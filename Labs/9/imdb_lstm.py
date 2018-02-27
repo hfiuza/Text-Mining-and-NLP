@@ -2,6 +2,19 @@
 
 # based on https://github.com/fchollet/keras/blob/master/examples/imdb_lstm.py
 
+# Obtained losses and accuracies:
+# With a LSTM:
+# 	- training loss: 0.4641
+#   - training accuracy: 0.7796
+#   - validation loss: 0.4229
+# 	- validation accuracy: 0.8072
+# With a simple RNN:
+# 	- training loss: 0.6951
+#   - training accuracy: 0.5291
+#   - validation loss: 0.6709
+# 	- validation accuracy: 0.5825
+# Considerably worse results than when using CNNs
+
 import numpy as np
 from keras.preprocessing import sequence
 from keras.models import Sequential
@@ -9,7 +22,7 @@ from keras.layers import Dense, Embedding
 from keras.layers import LSTM, SimpleRNN
 from keras.datasets import imdb
 # requires pydot_ng
-#from keras.utils.visualize_util import plot
+from keras.utils.vis_utils import plot_model
 
 np.random.seed(1337) # for reproducibility
 
@@ -53,7 +66,7 @@ model.compile(loss='binary_crossentropy',
 
 print 'Plotting model...'
 
-plot(model, to_file='model.png', show_shapes=True)
+plot_model(model, to_file='model.png', show_shapes=True)
 
 print 'Training model...'
 

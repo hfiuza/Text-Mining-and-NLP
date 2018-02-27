@@ -1,6 +1,12 @@
 # CNN for text classification.
 # based on https://github.com/fchollet/keras/blob/master/examples/imdb_cnn.py
+# Obtained loss and accuracy:
+# - training loss: 0.4680
+# - training accuracy: 0.7778
+# - validation loss: 0.3207
+# - validation accuracy: 0.8659
 
+import os
 import numpy as np
 from keras.preprocessing import sequence
 from keras.models import Sequential
@@ -72,8 +78,8 @@ max(all_idxs) == max_features - 1 == len(word_vectors.wv.vocab) + 1
 # surely due to the preprocessing that has been done on the reviews
 
 # load Google news word vectors corresponding to the words in our vocab
-os.chdir('/home/antoine/Lab5_word_embeddings/')
-word_vectors.intersect_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True)
+os.chdir('data/')
+word_vectors.intersect_word2vec_format('GoogleNews-vectors-negative300.bin.gz', binary=True)
 
 # len(word_vectors.wv.vocab) is still the same - so all the words in our vocab have an entry in the Google binary file
 #out_of_vocab_words = [word for word in word_vectors.wv.vocab if not np.count_nonzero(word_vectors[word])]
